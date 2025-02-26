@@ -1,11 +1,11 @@
 import SwiftUI
-import AppKit // ✅ Importer AppKit pour macOS
+import CoreData
 
 struct AddPrestationView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var nom: String = ""
     @State private var prixUnitaire: Double = 0.0
-    @Environment(\.dismiss) private var dismiss // ✅ Utilisé pour les `Sheet`
+    @Binding var isPresented: Bool // ✅ Pour fermer la `Sheet`
 
     var body: some View {
         VStack {
@@ -23,7 +23,7 @@ struct AddPrestationView: View {
 
             HStack {
                 Button("Annuler") {
-                    fermerFenetreCorrectement() // ✅ Ferme correctement la fenêtre
+                    isPresented = false // ✅ Ferme la `Sheet`
                 }
                 .padding()
                 .background(Color.red)
@@ -32,7 +32,7 @@ struct AddPrestationView: View {
 
                 Button("Ajouter Prestation") {
                     ajouterPrestation()
-                    fermerFenetreCorrectement() // ✅ Ferme correctement la fenêtre
+                    isPresented = false // ✅ Ferme la `Sheet` après ajout
                 }
                 .padding()
                 .background(Color.green)
@@ -49,15 +49,6 @@ struct AddPrestationView: View {
         prestation.prixUnitaire = prixUnitaire
         try? viewContext.save()
     }
-
-    /// ✅ Nouvelle fonction qui ferme la fenêtre **correctement** sur macOS
-    private func fermerFenetreCorrectement() {
-        if let window = NSApplication.shared.keyWindow {
-            window.close() // ✅ Ferme la fenêtre active
-        } else {
-            dismiss() // ✅ Alternative pour les `Sheet`
-        }
-    }
 }
 
 // ✅ Formatter pour afficher les prix avec 2 décimales
@@ -70,5 +61,5 @@ let decimalFormatter: NumberFormatter = {
 }()
 
 #Preview {
-    AddPrestationView().environment(\.managedObjectContext, PersistenceController.shared.context)
+    AddPrestationView(isPresented: .constant(true)).environment(\.managedObjectContext, PersistenceController.shared.context)
 }

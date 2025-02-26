@@ -8,6 +8,8 @@ struct PrestationListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Prestation.nom, ascending: true)]
     ) private var prestations: FetchedResults<Prestation>
 
+    @State private var showAddPrestationSheet = false // ✅ État pour afficher la pop-up
+
     var body: some View {
         NavigationView {
             VStack {
@@ -15,15 +17,13 @@ struct PrestationListView: View {
                     .font(.title)
                     .padding()
 
-                NavigationLink(destination: AddPrestationView()) { // ✅ Bouton pour ajouter une prestation
-                    Text("Ajouter une Prestation")
-                        .font(.headline)
-                        .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                Button("Ajouter une Prestation") { // ✅ Ouvre la pop-up
+                    showAddPrestationSheet = true
                 }
                 .padding()
+                .background(Color.green)
+                .foregroundColor(.white)
+                .cornerRadius(10)
 
                 List {
                     ForEach(prestations, id: \.objectID) { prestation in
@@ -39,6 +39,9 @@ struct PrestationListView: View {
                 }
             }
             .navigationTitle("Prestations")
+            .sheet(isPresented: $showAddPrestationSheet) { // ✅ Affichage de la `Sheet`
+                AddPrestationView(isPresented: $showAddPrestationSheet)
+            }
         }
     }
 }
