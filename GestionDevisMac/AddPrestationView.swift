@@ -3,9 +3,10 @@ import CoreData
 
 struct AddPrestationView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.dismiss) private var dismiss // ✅ Ajout pour fermer la `Sheet`
+
     @State private var nom: String = ""
     @State private var prixUnitaire: Double = 0.0
-    @Binding var isPresented: Bool // ✅ Pour fermer la `Sheet`
 
     var body: some View {
         VStack {
@@ -23,7 +24,7 @@ struct AddPrestationView: View {
 
             HStack {
                 Button("Annuler") {
-                    isPresented = false // ✅ Ferme la `Sheet`
+                    dismiss() // ✅ Ferme la Sheet
                 }
                 .padding()
                 .background(Color.red)
@@ -32,7 +33,7 @@ struct AddPrestationView: View {
 
                 Button("Ajouter Prestation") {
                     ajouterPrestation()
-                    isPresented = false // ✅ Ferme la `Sheet` après ajout
+                    dismiss() // ✅ Ferme la Sheet après l'ajout
                 }
                 .padding()
                 .background(Color.green)
@@ -61,5 +62,5 @@ let decimalFormatter: NumberFormatter = {
 }()
 
 #Preview {
-    AddPrestationView(isPresented: .constant(true)).environment(\.managedObjectContext, PersistenceController.shared.context)
+    AddPrestationView().environment(\.managedObjectContext, PersistenceController.shared.context)
 }

@@ -8,7 +8,7 @@ struct PrestationListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Prestation.nom, ascending: true)]
     ) private var prestations: FetchedResults<Prestation>
 
-    @State private var showAddPrestationSheet = false // ✅ État pour afficher la pop-up
+    @State private var showAddPrestationSheet = false // ✅ Gestion de la Sheet
 
     var body: some View {
         NavigationView {
@@ -17,7 +17,7 @@ struct PrestationListView: View {
                     .font(.title)
                     .padding()
 
-                Button("Ajouter une Prestation") { // ✅ Ouvre la pop-up
+                Button("Ajouter une Prestation") { // ✅ Ouvre la Sheet
                     showAddPrestationSheet = true
                 }
                 .padding()
@@ -39,8 +39,8 @@ struct PrestationListView: View {
                 }
             }
             .navigationTitle("Prestations")
-            .sheet(isPresented: $showAddPrestationSheet) { // ✅ Affichage de la `Sheet`
-                AddPrestationView(isPresented: $showAddPrestationSheet)
+            .sheet(isPresented: $showAddPrestationSheet) { // ✅ Passe l'argument correctement
+                AddPrestationView() // ✅ Correction : Plus de `isPresented`
             }
         }
     }
