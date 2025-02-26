@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="23G93" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Client" representedClassName="Client" syncable="YES" codeGenerationType="class">
+        <attribute name="adresseVoie" optional="YES" attributeType="String"/>
+        <attribute name="civilite" optional="YES" attributeType="String"/>
+        <attribute name="codePostal" optional="YES" attributeType="String"/>
+        <attribute name="complementAdresse" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="nom" optional="YES" attributeType="String"/>
+        <attribute name="numeroFiscal" optional="YES" attributeType="String"/>
+        <attribute name="prenom" optional="YES" attributeType="String"/>
+        <attribute name="telephone" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="ville" optional="YES" attributeType="String"/>
+        <relationship name="devis" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Devis" inverseName="client" inverseEntity="Devis"/>
+    </entity>
+    <entity name="Devis" representedClassName="Devis" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreation" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fraisAnnexes" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="remise" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="statutRaw" optional="YES" attributeType="String"/>
+        <relationship name="client" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Client" inverseName="devis" inverseEntity="Client"/>
+        <relationship name="prestations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Prestation" inverseName="devis" inverseEntity="Prestation"/>
+    </entity>
+    <entity name="Prestation" representedClassName="Prestation" syncable="YES" codeGenerationType="class">
+        <relationship name="devis" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Devis" inverseName="prestations" inverseEntity="Devis"/>
+    </entity>
+</model>
