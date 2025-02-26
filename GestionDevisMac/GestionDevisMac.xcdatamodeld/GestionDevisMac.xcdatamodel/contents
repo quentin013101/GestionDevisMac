@@ -17,14 +17,18 @@
     </entity>
     <entity name="Devis" representedClassName="Devis" syncable="YES" codeGenerationType="class">
         <attribute name="dateCreation" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="fraisAnnexes" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fraisAnnexesRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="remise" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="remiseRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="statut" optional="YES" attributeType="String"/>
         <attribute name="statutRaw" optional="YES" attributeType="String"/>
-        <relationship name="client" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Client" inverseName="devis" inverseEntity="Client"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="devis" inverseEntity="Client"/>
         <relationship name="prestations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Prestation" inverseName="devis" inverseEntity="Prestation"/>
     </entity>
     <entity name="Prestation" representedClassName="Prestation" syncable="YES" codeGenerationType="class">
+        <attribute name="descri" optional="YES" attributeType="String"/>
+        <attribute name="prixUnitaire" optional="YES" attributeType="String"/>
+        <attribute name="unite" optional="YES" attributeType="String"/>
         <relationship name="devis" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Devis" inverseName="prestations" inverseEntity="Devis"/>
     </entity>
 </model>
