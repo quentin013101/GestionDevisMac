@@ -28,6 +28,24 @@ extension Client {
     @NSManaged public var telephone: String?
     @NSManaged public var type: String?
     @NSManaged public var ville: String?
+    @NSManaged public var devis: NSSet?
+
+}
+
+// MARK: Generated accessors for devis
+extension Client {
+
+    @objc(addDevisObject:)
+    @NSManaged public func addToDevis(_ value: Devis)
+
+    @objc(removeDevisObject:)
+    @NSManaged public func removeFromDevis(_ value: Devis)
+
+    @objc(addDevis:)
+    @NSManaged public func addToDevis(_ values: NSSet)
+
+    @objc(removeDevis:)
+    @NSManaged public func removeFromDevis(_ values: NSSet)
 
 }
 
