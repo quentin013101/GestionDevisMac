@@ -27,7 +27,7 @@
         <relationship name="prestations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Prestation" inverseName="devis" inverseEntity="Prestation"/>
     </entity>
     <entity name="Prestation" representedClassName="Prestation" syncable="YES" codeGenerationType="class">
-        <attribute name="descri" optional="YES" attributeType="String"/>
+        <attribute name="nom" optional="YES" attributeType="String"/>
         <attribute name="prixUnitaire" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="unite" optional="YES" attributeType="String"/>
         <relationship name="devis" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Devis" inverseName="prestations" inverseEntity="Devis"/>
