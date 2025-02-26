@@ -30,3 +30,5 @@ struct DevisModel: Identifiable {
         montantHT + montantTVA + fraisAnnexes - remise
     }
 }
+
+//test
