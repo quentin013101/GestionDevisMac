@@ -13,8 +13,8 @@ struct DevisModel: Identifiable {
     init(client: Client, prestations: [Prestation], remise: Double, fraisAnnexes: Double, dateCreation: Date) {
         self.client = client
         self.prestations = prestations
-        self.remise = Double(remiseRaw ?? "0") ?? 0.0
-        self.fraisAnnexes = Double(fraisAnnexesRaw ?? "0") ?? 0.0
+        self.remise = remise
+        self.fraisAnnexes = fraisAnnexes
         self.dateCreation = dateCreation
     }
 

@@ -19,7 +19,7 @@ struct PrestationListView: View {
                     Text(prestation.description ?? "Sans description") // ✅ Protection contre nil
                         .font(.headline)
                     Spacer()
-                    Text("\(prestation.prixUnitaire, specifier: "%.2f") €")
+                    Text("\(prestation.prix ?? 0.0, specifier: "%.2f") €")
                         .foregroundColor(.gray)
                 }
                 .padding()

@@ -8,29 +8,30 @@ struct DevisListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Devis.dateCreation, ascending: false)]
     ) private var devisList: FetchedResults<Devis>
 
-
     var body: some View {
         VStack {
             Text("Liste des Devis")
                 .font(.title)
                 .padding()
-            
-            List(devisList, id: \.self) { devis in
-                HStack {
-                    Text(devis.client?.nom ?? "Sans client")
-                        .font(.headline)
-                        .onAppear {
-                            print("Client du devis : \(devis.client?.nom ?? "nil")") // ✅ Debug
+
+            List(devisList, id: \.objectID) { devis in
+                Text(devis.client?.nom ?? "Sans client")
+                    .font(.headline)
+                    .onAppear {
+                        if let clientNom = devis.client?.nom {
+                            print("Client du devis : \(clientNom)")
+                        } else {
+                            print("Client du devis : nil")
                         }
-                    Spacer()
-                    Text("\(devis.montantTTC, specifier: "%.2f") €")
-                        .foregroundColor(.gray)
-                }
+                    }
+                Spacer()
+                Text("\((devis.montantTTC as? Double ?? 0.0), specifier: "%.2f") €")
+                    .foregroundColor(.gray)
+            }
                 .padding()
             }
         }
     }
-}
 
 #Preview {
     DevisListView().environment(\.managedObjectContext, PersistenceController.shared.context)

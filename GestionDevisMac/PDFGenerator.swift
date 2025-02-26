@@ -10,7 +10,15 @@ class PDFGenerator {
 
         pdfContext.beginPDFPage(nil)
         
-        let text = "Devis pour \(devis.client.nom)\nMontant TTC : \(devis.montantTTC) €"
+        let clientNom: String
+        if let client = devis.client {
+            clientNom = client.nom ?? "Client inconnu"
+        } else {
+            clientNom = "Client inconnu"
+        }
+
+        let montantFormatted = String(format: "%.2f", devis.montantTTC ?? 0.0)
+        let text = "Devis pour \(clientNom)\nMontant TTC : \(montantFormatted) €"
         let attributes: [NSAttributedString.Key: Any] = [.font: NSFont.systemFont(ofSize: 16)]
         let attributedText = NSAttributedString(string: text, attributes: attributes)
 

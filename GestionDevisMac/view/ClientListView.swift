@@ -41,7 +41,7 @@ struct ClientListView: View {
             }
         }
         .sheet(item: $selectedClient) { client in
-            EditClientView(client: client, onSave: { updatedClient in
+            EditClientView(client: client, onSave: {
                 try? viewContext.save()
                 isEditing = false
             })

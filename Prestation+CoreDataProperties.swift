@@ -16,7 +16,7 @@ extension Prestation {
         return NSFetchRequest<Prestation>(entityName: "Prestation")
     }
 
-    @NSManaged public var prixUnitaire: String?
+    @NSManaged public var prixUnitaire: Double
     @NSManaged public var descri: String?
     @NSManaged public var unite: String?
     @NSManaged public var devis: NSSet?

@@ -17,9 +17,10 @@
     </entity>
     <entity name="Devis" representedClassName="Devis" syncable="YES" codeGenerationType="class">
         <attribute name="dateCreation" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="fraisAnnexesRaw" optional="YES" attributeType="String"/>
+        <attribute name="fraisAnnexesRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="remiseRaw" optional="YES" attributeType="String" defaultValueString="0"/>
+        <attribute name="montantTTC" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="remiseRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="statut" optional="YES" attributeType="String"/>
         <attribute name="statutRaw" optional="YES" attributeType="String" defaultValueString="Brouillon"/>
         <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="devis" inverseEntity="Client"/>
@@ -27,7 +28,7 @@
     </entity>
     <entity name="Prestation" representedClassName="Prestation" syncable="YES" codeGenerationType="class">
         <attribute name="descri" optional="YES" attributeType="String"/>
-        <attribute name="prixUnitaire" optional="YES" attributeType="String"/>
+        <attribute name="prixUnitaire" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="unite" optional="YES" attributeType="String"/>
         <relationship name="devis" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Devis" inverseName="prestations" inverseEntity="Devis"/>
     </entity>

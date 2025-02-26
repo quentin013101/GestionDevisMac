@@ -22,6 +22,7 @@ extension Devis {
     @NSManaged public var remiseRaw: Double
     @NSManaged public var statutRaw: String?
     @NSManaged public var statut: String?
+    @NSManaged public var montantTTC: NSDecimalNumber?
     @NSManaged public var client: Client?
     @NSManaged public var prestations: NSSet?
 
